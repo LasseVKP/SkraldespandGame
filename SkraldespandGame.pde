@@ -22,11 +22,9 @@ void setup(){
   
   size(500, 500);
 
-  trashcan = new Trashcan(width/2, height-100, new PVector(0,0), loadImage("trashcan.png"), 50, 50);
+  trashcan = new Trashcan(width/2, height-100, new PVector(0,0), loadImage("Skraldespand.png"), 50, 50);
 
-  objects.add(new Trash(100, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
-  objects.add(new Trash(300, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
-
+ 
   lastFrame = millis();  
 }
 
@@ -67,6 +65,7 @@ void draw(){
     score1 = score1 + 1 ;
   }
   println(score1);
+  textSize(100);
     fill(0);
   text(score1,250,100);
 }

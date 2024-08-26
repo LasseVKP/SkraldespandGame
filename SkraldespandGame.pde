@@ -43,19 +43,14 @@ void draw() {
   trashRain();
   if (myPort != null && myPort.available() > 0)
   {  // If data is available,
-    val = myPort.readStringUntil('\n');         // read it and store it in val
+    val = Float.parseFloat(myPort.readStringUntil('\n'));         // read it and store it in val
     println(val); //print it out in the console
+    xMovement = (val-0.5)*1000;
+  } else {
+    xMovement = (int(rightArrow) - int(leftArrow))*500;
   }
 
-
-  trashRain();
-  if (myPort != null && myPort.available() > 0)
-  {  // If data is available,
-    val = myPort.readStringUntil('\n');         // read it and store it in val
-    println(val); //print it out in the console
-  }
-
-  xMovement = (int(rightArrow) - int(leftArrow))*500;
+  
 
   // Set move direction (Skal ændres til retningen den skal bevæges i)
   trashcan.setDirection(new PVector(xMovement, 0));

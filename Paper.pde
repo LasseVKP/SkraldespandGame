@@ -15,7 +15,6 @@ class Paper extends Trash {
       moveLeft = !moveLeft;
       changeDirection = random(0, 2);
       this.direction.x = (int(moveLeft)*2-1)*random(10,30);
-      println("ChangeDirection");
     }
     
     this.direction.x += (int(moveLeft)*2-1)*random(0,3);

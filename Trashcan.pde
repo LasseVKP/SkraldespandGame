@@ -30,7 +30,7 @@ class Trashcan extends Object {
         }
       }
     }
-    
+
     return collisions;
   }
 }

@@ -4,8 +4,9 @@ ArrayList<Object> objects = new ArrayList<Object>();
 Trashcan trashcan;
 int xsmove;
 int ysmove;
+
 void setup(){
-String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
+  String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);
   
   size(500, 500);
@@ -18,20 +19,22 @@ String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match you
 }
 
 void draw(){
-  if ( myPort.available() > 0) 
-  {  // If data is available,
-  val = myPort.readStringUntil('\n');         // read it and store it in val
-  } 
-println(val); //print it out in the console
-
   // Calculate deltaTime
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;
   lastFrame = time;
+  
+  background(255);
 
+    if ( myPort.available() > 0) 
+    {  // If data is available,
+    val = myPort.readStringUntil('\n');         // read it and store it in val
+    } 
+  
+  println(val); //print it out in the console
+  
 
   // Set move direction (Skal ændres til retningen den skal bevæges i)
-  
   trashcan.setDirection(new PVector(xsmove,ysmove));
 
   // Tick and display all objects

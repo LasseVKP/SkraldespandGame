@@ -15,8 +15,8 @@ void draw(){
   {  // If data is available,
   val = myPort.readStringUntil('\n');         // read it and store it in val
   } 
-  
 println(val); //print it out in the console
+
   // Calculate deltaTime
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;

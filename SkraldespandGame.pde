@@ -28,6 +28,10 @@ void setup() {
   objects.add(new Trash(300, 100, new PVector(0, 50), loadImage("trashcan.png"), 50, 50));
 
   lastFrame = millis();
+  trashcan = new Trashcan(width/2, height-100, new PVector(0, 0), loadImage("Skraldespand.png"), 50, 50);
+
+
+  lastFrame = millis();
 }
 
 void draw() {
@@ -38,6 +42,14 @@ void draw() {
   lastFrame = time;
 
   background(255);
+
+  trashRain();
+  if (myPort != null && myPort.available() > 0)
+  {  // If data is available,
+    val = myPort.readStringUntil('\n');         // read it and store it in val
+    println(val); //print it out in the console
+  }
+
 
   trashRain();
   if (myPort != null && myPort.available() > 0)
@@ -67,4 +79,8 @@ void draw() {
     score1 = score1 + 1 ;
   }
   println(score1);
+
+  textSize(100);
+  fill(0);
+  text(score1, 250, 100);
 }

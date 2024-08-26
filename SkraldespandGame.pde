@@ -10,6 +10,7 @@ int health = 3;
 boolean game = false;
 float gameTime;
 float scaling = 150;
+int nextLife;
 
 // Kode til keyboard
 boolean rightArrow = false;
@@ -81,6 +82,10 @@ void draw() {
       }
     } else {
       score1 += t.value;
+      if(score1 >= nextLife){
+        health++;
+        nextLife += 100;
+      }
     }
     
   }
@@ -103,5 +108,6 @@ void gameSetup(){
   score1 = 0;
   health = 3;
   gameTime = 0;
+  nextLife = 100;
   
 }

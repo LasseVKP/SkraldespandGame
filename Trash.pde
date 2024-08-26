@@ -1,5 +1,5 @@
 class Trash extends Object {
-  private PVector direction;
+  PVector direction;
   int value;
 
   public Trash(float x, float y, PVector direction, PImage sprite, float sizeX, float sizeY, int value) {

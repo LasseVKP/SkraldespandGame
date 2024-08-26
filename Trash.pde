@@ -1,4 +1,4 @@
-class Trash implements Tickable, Displayable{  
+class Trash implements Object {  
   float x;
   float y;
   private PVector direction;
@@ -23,7 +23,7 @@ class Trash implements Tickable, Displayable{
   }
   
   public void display(){
-    
+    image(this.sprite, this.x-sizeX/2, this.y-sizeY/2, this.sizeX, this.sizeY);
   }
   
 }

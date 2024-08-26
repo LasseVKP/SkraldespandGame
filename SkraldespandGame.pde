@@ -2,10 +2,12 @@ float deltaTime = 0.0;
 long lastFrame;
 ArrayList<Object> objects = new ArrayList<Object>();
 Trashcan trashcan;
+Trash trash; 
 int xsmove;
 int ysmove;
-int score1 = 0;
 
+float nextTrash = 2.5; 
+int score1 = 0;
 
 void setup(){
   if(Serial.list().length > 0 && (Serial.list()[0].contains("/dev/cu.usbserial") || Serial.list()[0].contains("COM") ))
@@ -24,7 +26,7 @@ void setup(){
   objects.add(new Trash(100, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
   objects.add(new Trash(300, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
 
-  lastFrame = millis();
+  lastFrame = millis();  
 }
 
 void draw(){
@@ -35,7 +37,7 @@ void draw(){
   lastFrame = time;
   
   background(255);
-    
+  trashRain(); 
     if (myPort != null && myPort.available() > 0) 
     {  // If data is available,
       val = myPort.readStringUntil('\n');         // read it and store it in val

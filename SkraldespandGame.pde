@@ -11,6 +11,12 @@ String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match you
 }
 
 void draw(){
+  if ( myPort.available() > 0) 
+  {  // If data is available,
+  val = myPort.readStringUntil('\n');         // read it and store it in val
+  } 
+  
+println(val); //print it out in the console
   // Calculate deltaTime
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;

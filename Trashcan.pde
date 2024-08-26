@@ -23,7 +23,7 @@ class Trashcan extends Object {
 
     for (Object object : objects) {
       // Check if objects is trash
-      if (object.getClass() == Trash.class) {
+      if (object.getClass() == Trash.class || object.getClass() == Paper.class) {
         // Check if object is colliding
         if (object.x >= this.x - this.sizeX/2 && object.x <= this.x + this.sizeX/2 && object.y >= this.y - this.sizeY/2 && object.y <= this.y + this.sizeY/2) {
           collisions.add(object);

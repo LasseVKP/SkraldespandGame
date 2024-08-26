@@ -14,7 +14,7 @@ void trashRain() {
     trash = new Paper( random(20, width-20), 0, new PVector(random(-50, 50), 100), loadImage("papir1.png"), 35, 35, 3);
     }
     nextTrash = 1.5;
-    objects.add(trash);
+    trashList.add(trash);
 
   }
 }

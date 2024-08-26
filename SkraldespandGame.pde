@@ -1,6 +1,6 @@
 float deltaTime = 0.0;
 long lastFrame;
-ArrayList<Object> objects = new ArrayList<Object>();
+ArrayList<Trash> trashList = new ArrayList<Trash>();
 Trashcan trashcan;
 Trash trash;
 float xMovement;
@@ -22,7 +22,7 @@ void setup() {
 
   size(500,500);
   lastFrame = millis();
-  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75,1);
+  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
 
 
   lastFrame = millis();
@@ -58,9 +58,9 @@ void draw() {
   trashcan.setDirection(new PVector(xMovement, 0));
 
   // Tick and display all objects
-  for (Object o : objects) {
-    o.tick(deltaTime);
-    o.display();
+  for (Trash t : trashList) {
+    t.tick(deltaTime);
+    t.display();
   }
 
   // Tick and display trashcan
@@ -68,10 +68,10 @@ void draw() {
   trashcan.display();
 
   // Check collisions
-  for (Object object : trashcan.checkCollisions(objects)) {
-    objects.remove(object);
+  for (Trash t : trashcan.checkCollisions(trashList)) {
+    trashList.remove(t);
     
-    score1 = score1 + object.value ;
+    score1 = score1 + t.value ;
   }
   println(score1);
   fill(0);

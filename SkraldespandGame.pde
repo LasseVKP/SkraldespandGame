@@ -37,6 +37,7 @@ void draw(){
   lastFrame = time;
   
   background(255);
+
   trashRain(); 
     if (myPort != null && myPort.available() > 0) 
     {  // If data is available,
@@ -64,5 +65,6 @@ void draw(){
     score1 = score1 + 1 ;
   }
   println(score1);
-  
+    fill(0);
+  text(score1,250,100);
 }

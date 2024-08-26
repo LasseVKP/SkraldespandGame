@@ -8,6 +8,8 @@ float nextTrash = 2.5;
 int score1 = 0;
 int health = 3;
 boolean game = false;
+float gameTime;
+float scaling = 150;
 
 // Kode til keyboard
 boolean rightArrow = false;
@@ -33,6 +35,7 @@ void draw() {
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;
   lastFrame = time;
+  gameTime += deltaTime;
 
   background(255);
 
@@ -86,6 +89,8 @@ rect(0,height-100,width,100);
   textSize(100);
   fill(255);
   text(score1, 10, height-10);
+  fill(color(255, 0, 0));
+  text(health, width-60, height-10);
   }
 }
 
@@ -97,5 +102,6 @@ void gameSetup(){
   nextTrash = 1.5;
   score1 = 0;
   health = 3;
+  gameTime = 0;
   
 }

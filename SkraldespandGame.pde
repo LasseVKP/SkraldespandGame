@@ -20,9 +20,9 @@ void setup() {
     println("ERROR: Could not connect to arduino");
   }
 
-  size(500, 500);
+  size(500,500);
   lastFrame = millis();
-  trashcan = new Trashcan(width/2, height-100, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
+  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
 
 
   lastFrame = millis();
@@ -73,8 +73,9 @@ void draw() {
     score1 = score1 + 1 ;
   }
   println(score1);
-
-  textSize(100);
   fill(0);
-  text(score1, 250, 100);
+rect(0,height-100,width,100);
+  textSize(100);
+  fill(255);
+  text(score1, 10, height-10);
 }

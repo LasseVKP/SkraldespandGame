@@ -2,7 +2,8 @@ float deltaTime = 0.0;
 long lastFrame;
 ArrayList<Object> objects = new ArrayList<Object>();
 Trashcan trashcan;
-
+int xsmove;
+int ysmove;
 void setup(){
 String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);
@@ -30,8 +31,8 @@ println(val); //print it out in the console
 
 
   // Set move direction (Skal ændres til retningen den skal bevæges i)
-  PVector moveDir = new PVector();
-  trashcan.setDirection(moveDir);
+  
+  trashcan.setDirection(new PVector(xsmove,ysmove));
 
   // Tick and display all objects
   for(Object o : objects){

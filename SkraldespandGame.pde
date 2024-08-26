@@ -6,6 +6,10 @@ Trash trash;
 float xMovement;
 float nextTrash = 2.5;
 int score1 = 0;
+int health = 3;
+boolean game = false;
+float gameTime;
+float scaling = 150;
 
 // Kode til keyboard
 boolean rightArrow = false;
@@ -21,19 +25,17 @@ void setup() {
   }
 
   size(500,500);
-  lastFrame = millis();
-  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
-
-
-  lastFrame = millis();
+  
+  gameSetup();
 }
 
 void draw() {
-
+  if(game){
   // Calculate deltaTime
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;
   lastFrame = time;
+  gameTime += deltaTime;
 
   background(255);
 
@@ -71,12 +73,35 @@ void draw() {
   for (Trash t : trashcan.checkCollisions(trashList)) {
     trashList.remove(t);
     
-    score1 = score1 + t.value ;
+    if(t.value < 0){
+      health -= 1;
+      println(health);
+      if(health == 0){
+        game = false;
+      }
+    } else {
+      score1 += t.value;
+    }
+    
   }
-  println(score1);
   fill(0);
 rect(0,height-100,width,100);
   textSize(100);
   fill(255);
   text(score1, 10, height-10);
+  fill(color(255, 0, 0));
+  text(health, width-60, height-10);
+  }
+}
+
+void gameSetup(){
+  game = true;
+  trashList = new ArrayList<Trash>();
+  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
+  lastFrame = millis();
+  nextTrash = 1.5;
+  score1 = 0;
+  health = 3;
+  gameTime = 0;
+  
 }

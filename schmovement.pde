@@ -3,6 +3,8 @@ void keyPressed() {
     rightArrow = true;
   } else if (keyCode == 37) {
     leftArrow = true;
+  } else if(keyCode == 82){
+    gameSetup();
   }
 }
 void keyReleased() {

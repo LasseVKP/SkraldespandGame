@@ -22,7 +22,7 @@ void setup() {
 
   size(500,500);
   lastFrame = millis();
-  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
+  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75,1);
 
 
   lastFrame = millis();
@@ -70,7 +70,8 @@ void draw() {
   // Check collisions
   for (Object object : trashcan.checkCollisions(objects)) {
     objects.remove(object);
-    score1 = score1 + 1 ;
+    
+    score1 = score1 + object.value ;
   }
   println(score1);
   fill(0);

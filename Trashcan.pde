@@ -1,8 +1,8 @@
 class Trashcan extends Object {
   private PVector direction;
 
-  public Trashcan(float x, float y, PVector direction, PImage sprite, float sizeX, float sizeY) {
-    super(x, y, sprite, sizeX, sizeY);
+  public Trashcan(float x, float y, PVector direction, PImage sprite, float sizeX, float sizeY,int value) {
+    super(x, y, sprite, sizeX, sizeY, value);
     this.direction = direction;
   }
 
@@ -27,6 +27,7 @@ class Trashcan extends Object {
         // Check if object is colliding
         if (object.x >= this.x - this.sizeX/2 && object.x <= this.x + this.sizeX/2 && object.y >= this.y - this.sizeY/2 && object.y <= this.y + this.sizeY/2) {
           collisions.add(object);
+          
         }
       }
     }

@@ -3,7 +3,7 @@ class Trash extends Object {
   int value;
 
   public Trash(float x, float y, PVector direction, PImage sprite, float sizeX, float sizeY, int value) {
-    super(x, y, sprite, sizeX, sizeY);
+    super(x, y, sprite, sizeX, sizeY, value);
     this.direction = direction;
     this.value = value;
   }

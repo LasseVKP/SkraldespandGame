@@ -3,11 +3,13 @@ long lastFrame;
 ArrayList<Object> objects = new ArrayList<Object>();
 Trashcan trashcan;
 Trash trash; 
-int xsmove;
-int ysmove;
-
+float xMovement;
 float nextTrash = 2.5; 
 int score1 = 0;
+
+// Kode til keyboard
+boolean rightArrow = false;
+boolean leftArrow = false;
 
 void setup(){
   if(Serial.list().length > 0 && (Serial.list()[0].contains("/dev/cu.usbserial") || Serial.list()[0].contains("COM") ))
@@ -19,7 +21,6 @@ void setup(){
   }
   
   size(500, 500);
-
 
   trashcan = new Trashcan(width/2, height-100, new PVector(0,0), loadImage("trashcan.png"), 50, 50);
 
@@ -45,9 +46,10 @@ void draw(){
       println(val); //print it out in the console
     } 
   
+  xMovement = (int(rightArrow) - int(leftArrow))*500;
 
   // Set move direction (Skal ændres til retningen den skal bevæges i)
-  trashcan.setDirection(new PVector(xsmove,ysmove));
+  trashcan.setDirection(new PVector(xMovement, 0));
 
   // Tick and display all objects
   for(Object o : objects){

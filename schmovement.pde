@@ -1,12 +1,14 @@
 void keyPressed(){
   if (keyCode == 39){
-    xsmove = 500;
+    rightArrow = true;
   }else if (keyCode == 37){
-    xsmove = -500;
+    leftArrow = true;
   }
 }
 void keyReleased(){
- if (keyCode == 39 || keyCode == 37) {
-  xsmove = 0 ;
- }
+  if (keyCode == 39){
+    rightArrow = false;
+  }else if (keyCode == 37){
+    leftArrow = false;
+  }
 }

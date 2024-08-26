@@ -21,11 +21,8 @@ void setup() {
   }
 
   size(500, 500);
-
-  trashcan = new Trashcan(width/2, height-100, new PVector(0, 0), loadImage("trashcan.png"), 75, 75);
-
   lastFrame = millis();
-  trashcan = new Trashcan(width/2, height-100, new PVector(0, 0), loadImage("Skraldespand.png"), 50, 50);
+  trashcan = new Trashcan(width/2, height-100, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
 
 
   lastFrame = millis();

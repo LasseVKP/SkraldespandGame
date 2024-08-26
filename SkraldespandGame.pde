@@ -6,7 +6,6 @@ int xsmove;
 int ysmove;
 
 void setup(){
-  print(Serial.list()[0]);
   if(Serial.list().length > 0 && (Serial.list()[0].contains("/dev/cu.usbserial") || Serial.list()[0].contains("COM") ))
   {
   String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
@@ -19,7 +18,9 @@ void setup(){
 
 
   trashcan = new Trashcan(width/2, height-100, new PVector(0,0), loadImage("trashcan.png"), 50, 50);
-  objects.add(trashcan);
+
+  objects.add(new Trash(100, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
+  
 
   lastFrame = millis();
 }
@@ -47,6 +48,13 @@ void draw(){
     o.tick(deltaTime);
     o.display();
   }
+  
+  // Tick and display trashcan
+  trashcan.tick(deltaTime);
+  trashcan.display();
 
-
+  // Check collisions
+  for(Object object : trashcan.checkCollisions(objects)){
+    objects.remove(object);
+  }
 }

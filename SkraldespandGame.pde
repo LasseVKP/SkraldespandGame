@@ -4,6 +4,8 @@ ArrayList<Object> objects = new ArrayList<Object>();
 Trashcan trashcan;
 int xsmove;
 int ysmove;
+int score1 = 0;
+
 
 void setup(){
   if(Serial.list().length > 0 && (Serial.list()[0].contains("/dev/cu.usbserial") || Serial.list()[0].contains("COM") ))
@@ -20,12 +22,13 @@ void setup(){
   trashcan = new Trashcan(width/2, height-100, new PVector(0,0), loadImage("trashcan.png"), 50, 50);
 
   objects.add(new Trash(100, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
-  
+  objects.add(new Trash(300, 100, new PVector(0,50), loadImage("trashcan.png"), 50, 50));
 
   lastFrame = millis();
 }
 
 void draw(){
+  
   // Calculate deltaTime
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;
@@ -56,5 +59,8 @@ void draw(){
   // Check collisions
   for(Object object : trashcan.checkCollisions(objects)){
     objects.remove(object);
+    score1 = score1 + 1 ;
   }
+  println(score1);
+  
 }

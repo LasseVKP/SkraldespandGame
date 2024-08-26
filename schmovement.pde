@@ -5,3 +5,8 @@ void keyPressed(){
     xsmove = -500;
   }
 }
+void keyReleased(){
+ if (keyCode == 39 || keyCode == 37) {
+  xsmove = 0 ;
+ }
+}

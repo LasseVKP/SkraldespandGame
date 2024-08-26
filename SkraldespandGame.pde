@@ -6,10 +6,13 @@ int xsmove;
 int ysmove;
 
 void setup(){
-  if(Serial.list().length > 0)
+  print(Serial.list()[0]);
+  if(Serial.list().length > 0 || Serial.list()[0].contains("/dev/cu.usbserial"))
   {
   String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);
+  } else {
+    println("ERROR: Could not connect to arduino");
   }
   
   size(500, 500);

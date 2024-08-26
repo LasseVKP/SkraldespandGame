@@ -7,7 +7,7 @@ int ysmove;
 
 void setup(){
   print(Serial.list()[0]);
-  if(Serial.list().length > 0 || Serial.list()[0].contains("/dev/cu.usbserial"))
+  if(Serial.list().length > 0 && (Serial.list()[0].contains("/dev/cu.usbserial") || Serial.list()[0].contains("COM") ))
   {
   String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
   myPort = new Serial(this, portName, 9600);

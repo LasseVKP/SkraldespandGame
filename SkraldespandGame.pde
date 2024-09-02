@@ -11,6 +11,11 @@ boolean game = false;
 float gameTime;
 float scaling = 150;
 int nextLife;
+PImage background;
+PImage hotbar;
+
+int border;
+float deadZone = 15;
 
 // Kode til keyboard
 boolean rightArrow = false;
@@ -25,8 +30,18 @@ void setup() {
     println("ERROR: Could not connect to arduino");
   }
 
-  size(1080,1080);
-    
+  fullScreen();
+  
+  background = loadImage("background.png");
+  background.resize(width, height);
+  
+  border = (width-919)/2;
+  
+  hotbar = loadImage("hotbar.png");
+  hotbar.resize(width-border*2, 200);
+  
+  
+ 
   gameSetup();
 }
 
@@ -38,16 +53,19 @@ void draw() {
   lastFrame = time;
   gameTime += deltaTime;
 
-  background(255);
+  background(background);
 
   trashRain();
   if (myPort != null && myPort.available() > 0)
   {  // If data is available,
     //println(myPort.readStringUntil('\n'));
-    val = parseFloat(myPort.readStringUntil('\n'))-360;         // read it and store it in val
+    val = parseFloat(myPort.readStringUntil('\n'))-358;         // read it and store it in val
     myPort.clear();
     println(val); //print it out in the console
-    xMovement = val*60;
+    
+    if(val<deadZone && val>-deadZone) val = 0;
+    
+    xMovement = val*-60;
   } else {
     xMovement = (int(rightArrow) - int(leftArrow))*500;
   }
@@ -81,30 +99,29 @@ void draw() {
       score1 += t.value;
       if(score1 >= nextLife){
         health++;
-        nextLife += 100;
+        nextLife += 50;
       }
     }
     
   }
-  fill(0);
-rect(0,height-100,width,100);
-  textSize(100);
+  image(hotbar, border, height-120, width-border*2, 120);
+  textSize(60);
   fill(255);
-  text(score1, 10, height-10);
+  text(score1, 55+border, height-60);
   fill(color(255, 0, 0));
-  text(health, width-60, height-10);
+  text(health, width-115-border, height-60);
   }
 }
 
 void gameSetup(){
   game = true;
   trashList = new ArrayList<Trash>();
-  trashcan = new Trashcan(width/2, height-150, new PVector(0, 0), loadImage("Skraldespand.png"), 150, 150);
+  trashcan = new Trashcan(width/2, height-190, new PVector(0, 0), loadImage("Skraldespand.png"), 150, 150);
   lastFrame = millis();
   nextTrash = 1.5;
   score1 = 0;
   health = 3;
   gameTime = 0;
-  nextLife = 100;
+  nextLife = 50;
   
 }

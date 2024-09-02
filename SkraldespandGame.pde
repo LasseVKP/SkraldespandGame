@@ -20,7 +20,7 @@ void setup() {
   if (Serial.list().length > 0 && (Serial.list()[0].contains("/dev/cu.usbserial") || Serial.list()[0].contains("COM") ))
   {
     String portName = Serial.list()[0]; //change the 0 to a 1 or 2 etc. to match your port
-    myPort = new Serial(this, portName, 9600);
+    myPort = new Serial(this, portName, 115200);
   } else {
     println("ERROR: Could not connect to arduino");
   }
@@ -43,9 +43,11 @@ void draw() {
   trashRain();
   if (myPort != null && myPort.available() > 0)
   {  // If data is available,
-    val = Float.parseFloat(myPort.readStringUntil('\n'));         // read it and store it in val
+    //println(myPort.readStringUntil('\n'));
+    val = parseFloat(myPort.readStringUntil('\n'))-360;         // read it and store it in val
+    myPort.clear();
     println(val); //print it out in the console
-    xMovement = (val-0.5)*1000;
+    xMovement = val*60;
   } else {
     xMovement = (int(rightArrow) - int(leftArrow))*500;
   }

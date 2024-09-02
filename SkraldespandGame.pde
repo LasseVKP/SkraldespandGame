@@ -25,8 +25,8 @@ void setup() {
     println("ERROR: Could not connect to arduino");
   }
 
-  size(500,500);
-  
+  size(1080,1080);
+    
   gameSetup();
 }
 
@@ -99,7 +99,7 @@ rect(0,height-100,width,100);
 void gameSetup(){
   game = true;
   trashList = new ArrayList<Trash>();
-  trashcan = new Trashcan(width/2, height-125, new PVector(0, 0), loadImage("Skraldespand.png"), 75, 75);
+  trashcan = new Trashcan(width/2, height-150, new PVector(0, 0), loadImage("Skraldespand.png"), 150, 150);
   lastFrame = millis();
   nextTrash = 1.5;
   score1 = 0;

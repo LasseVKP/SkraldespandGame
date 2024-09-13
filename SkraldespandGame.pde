@@ -15,7 +15,7 @@ PImage background;
 PImage hotbar;
 
 int border;
-float deadZone = 15;
+float deadZone = 10;
 
 // Kode til keyboard
 boolean rightArrow = false;
@@ -59,13 +59,13 @@ void draw() {
   if (myPort != null && myPort.available() > 0)
   {  // If data is available,
     //println(myPort.readStringUntil('\n'));
-    val = parseFloat(myPort.readStringUntil('\n'))-358;         // read it and store it in val
+    val = parseFloat(myPort.readStringUntil('\n'))-393;         // read it and store it in val
     myPort.clear();
     println(val); //print it out in the console
     
     if(val<deadZone && val>-deadZone) val = 0;
     
-    xMovement = val*-60;
+    xMovement = val*-40;
   } else {
     xMovement = (int(rightArrow) - int(leftArrow))*500;
   }
@@ -76,11 +76,14 @@ void draw() {
   trashcan.setDirection(new PVector(xMovement, 0));
 
   // Tick and display all objects
+  
+  trashList.removeIf(t -> (t.y > height));
+  
   for (Trash t : trashList) {
     t.tick(deltaTime);
     t.display();
   }
-
+  
   // Tick and display trashcan
   trashcan.tick(deltaTime);
   trashcan.display();

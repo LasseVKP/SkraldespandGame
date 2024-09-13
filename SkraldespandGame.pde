@@ -13,7 +13,7 @@ float scaling = 150;
 int nextLife;
 PImage background;
 PImage hotbar;
-int timesincedeath;
+float timesincedeath;
 int border;
 float deadZone = 10;
 
@@ -46,12 +46,14 @@ void setup() {
 }
 
 void draw() {
-  if(game){
-  // Calculate deltaTime
   long time = millis();
   deltaTime = (time-lastFrame)/1000.0;
   lastFrame = time;
   gameTime += deltaTime;
+  
+  if(game){
+  // Calculate deltaTime
+
 
   background(background);
 
@@ -115,14 +117,16 @@ void draw() {
   text(health, width-115-border, height-60);
   }
   if (game == false){
-   timesincedeath ++;
-   if (timesincedeath > 1000){
+   timesincedeath += deltaTime;
+   println(timesincedeath);
+   if (timesincedeath > 30){
     gameSetup(); 
    }
   }
 }
 
 void gameSetup(){
+  timesincedeath = 0;
   game = true;
   trashList = new ArrayList<Trash>();
   trashcan = new Trashcan(width/2, height-190, new PVector(0, 0), loadImage("Skraldespand.png"), 150, 150);

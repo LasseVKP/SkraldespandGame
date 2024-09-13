@@ -13,7 +13,7 @@ float scaling = 150;
 int nextLife;
 PImage background;
 PImage hotbar;
-
+int timesincedeath;
 int border;
 float deadZone = 10;
 
@@ -113,6 +113,12 @@ void draw() {
   text(score1, 55+border, height-60);
   fill(color(255, 0, 0));
   text(health, width-115-border, height-60);
+  }
+  if (game == false){
+   timesincedeath ++;
+   if (timesincedeath > 1000){
+    gameSetup(); 
+   }
   }
 }
 

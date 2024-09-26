@@ -61,7 +61,7 @@ void draw() {
   if (myPort != null && myPort.available() > 0)
   {  // If data is available,
     //println(myPort.readStringUntil('\n'));
-    val = parseFloat(myPort.readStringUntil('\n'))-393;         // read it and store it in val
+    val = parseFloat(myPort.readStringUntil('\n'))-458;         // read it and store it in val
     myPort.clear();
     println(val); //print it out in the console
     
